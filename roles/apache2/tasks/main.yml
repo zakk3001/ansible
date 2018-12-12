@@ -1,0 +1,19 @@
+#- name: Install base packages
+#  apt: name={{ apache2 }} state=installed
+#  apt: pkg=w3m state=installed
+
+# This uses a variable as this changes per distribution.
+#- name: add the apache package
+#  package:
+#      name: "{{ w3m }}"
+#      state: present
+
+
+# Install "nmap"
+ - zypper:
+     name: apache2,apache2-utils
+     state: present
+
+ - service:
+     name: apache2
+     state: started

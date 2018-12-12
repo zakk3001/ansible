@@ -1,0 +1,25 @@
+#- name: Install base packages
+#  apt: name={{ apache2 }} state=installed
+#  apt: pkg=w3m state=installed
+
+# This uses a variable as this changes per distribution.
+#- name: add the apache package
+#  package:
+#      name: "{{ w3m }}"
+#      state: present
+ - shell : cat /etc/centos-release
+   register: output
+   changed_when : false
+
+ - debug: var=output.stdout
+
+ - name : On update les serveurs
+   yum:
+     name: '*'
+     exclude: php5*
+     state: latest
+ - shell : cat /etc/centos-release
+   register: output
+   changed_when : false
+
+ - debug: var=output.stdout

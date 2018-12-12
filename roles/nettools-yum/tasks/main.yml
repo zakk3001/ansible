@@ -1,0 +1,4 @@
+ - yum:
+     name: net-tools
+     state: present
+

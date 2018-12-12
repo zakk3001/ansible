@@ -1,0 +1,24 @@
+#- name: Install base packages
+#  apt: name={{ apache2 }} state=installed
+#  apt: pkg=w3m state=installed
+
+# This uses a variable as this changes per distribution.
+#- name: add the apache package
+#  package:
+#      name: "{{ w3m }}"
+#      state: present
+
+# - name: register version check
+#    shell: cat /root/versions.js | grep -q {{VERSION}}
+#    register: current_version
+#    failed_when: current_version.rc == 2
+
+ - name: restart si necessaire
+   shell: needs-restarting -r|reboot
+   register: retour
+   failed_when: retour.rc > 1
+#     when: result is failed
+
+#    when: current_version.rc == 1
+#     when: result is failed
+

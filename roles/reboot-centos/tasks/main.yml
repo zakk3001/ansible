@@ -1,0 +1,20 @@
+
+#- name: Reboot a slow machine that might have lots of updates to apply
+ - name: On reboot les serveurs
+   reboot:
+#     reboot_timeout: 3600
+
+# - shell: shutdown -r now
+
+# This pause is mandatory, otherwise the existing control connection gets reused!
+# - pause: seconds=30
+#
+# - name: waiting for server booting up
+#   local_action: wait_for
+#   args:
+#     host: ''
+#     port: 22
+#     delay: 30
+#     timeout: 300
+#     state: started
+#     become: false

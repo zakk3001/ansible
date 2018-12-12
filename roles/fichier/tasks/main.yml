@@ -1,0 +1,42 @@
+# touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+# - file:
+#     path: /etc/testluc/foo.conf
+#     state: touch
+#     mode: "u=rw,g=r,o=r"
+
+# create a directory if it doesn't exist
+ - file:
+     path: /etc/testluc
+     state: directory
+     mode: 0755
+
+# copie fichier locale vers remote
+# - copy:
+#     src: /etc/ansible/fichiers/zozo
+#     dest: /etc/testluc/zozo
+#     owner: root
+#     group: root
+#     mode: 0744
+     #     force: no
+#     state: present
+
+# mets la bonne valeure
+ - name : test fffffffffffffffffffffffffffffffffffffffffff
+   lineinfile:
+     path: /etc/testluc/zozo
+     regexp: '^toto='
+     line: 'toto=enforcing'
+#     backrefs: true
+#     state: present
+#     backrefs : yes
+#     when: checkIfLineIsHere.changed
+
+
+# Determine if a path exists and is a directory.  Note that we need to test
+# # both that p.stat.isdir actually exists, and also that it's set to true.
+# - stat:
+#     path: /etc/coco
+#   register: p
+# - debug:
+#     msg: "Path exists and is a directory"
+#     when: p.stat.isdir is defined and p.stat.isdir

@@ -1,0 +1,11 @@
+# Add a line to a file if it does not exist, without passing regexp
+ - name : On ajoute le serveur DNS dans resolv.conf
+   lineinfile:
+     path: /etc/resolv.conf
+     line: 'nameserver 8.8.8.8'
+ - name : On rend la modif permanante
+   lineinfile:
+     path: /etc/sysconfig/network-scripts/ifcfg-eth0
+     line: 'PEERDNS=no'
+     state: present
+
