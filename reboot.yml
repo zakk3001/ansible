@@ -1,0 +1,7 @@
+---
+- hosts: Centos
+#  serial: "30%"
+  serial: 100%
+  gather_facts: False
+  roles:
+  - reboot-centos

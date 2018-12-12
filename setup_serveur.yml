@@ -1,0 +1,8 @@
+---
+- hosts: Centos
+  roles:
+  - resolv
+  - apache2-yum
+    #  - fichier
+  - nettools-yum
+  - fail2ban

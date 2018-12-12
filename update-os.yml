@@ -1,0 +1,7 @@
+---
+- hosts: Centos
+  remote_user: root
+  #  become: yes
+  roles:
+  - update-yum
+#  - reboot-centos

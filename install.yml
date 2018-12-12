@@ -1,0 +1,12 @@
+---
+ - name : installation de vim htop git
+   hosts: Centos
+   tasks:
+   - name: Install a list of packages
+     yum:
+       name:
+         - vim
+         - htop
+         - git
+       state: present
+...

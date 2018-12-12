@@ -1,0 +1,5 @@
+---
+- hosts: Centos
+  roles:
+  - fichier
+#  - reboot-centos

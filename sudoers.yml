@@ -1,0 +1,9 @@
+- name: Set Password
+  hosts: Centos
+  remote_user: ansible
+  sudo: yes
+  ignore_errors: yes
+
+  tasks:
+    - name: On modifie sudoers
+      template: src=templates/sudoers.j2 dest=/etc/sudoers.d/ansible

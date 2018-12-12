@@ -1,0 +1,8 @@
+- hosts: Centos
+  tasks:
+  - name: Ansible register variable basic example
+    shell: "cat /etc/issue"
+    register: find_output
+
+  - debug:
+      var: find_output

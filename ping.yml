@@ -1,0 +1,20 @@
+- hosts: Centos
+  gather_facts: no
+  #strategy: debug
+  tasks:
+     
+    - name: run this command and ignore the result
+      shell: ping -c 1 8.8.8.8
+      register: pingout
+      ignore_errors: yes
+                      
+    - debug: msg="{{ pingout.rc }}"
+
+    - name: Prepare well output
+      raw: echo "What a wonderful world"
+      register: output
+      when:  pingout.rc  == 0
+ 
+    - debug: var=output
+                                 
+                                 

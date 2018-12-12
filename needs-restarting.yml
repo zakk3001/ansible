@@ -1,0 +1,5 @@
+---
+- hosts: Centos
+  roles:
+  - needs-restarting
+#  - reboot-centos

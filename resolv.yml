@@ -1,0 +1,4 @@
+---
+- hosts: Centos
+  roles:
+  - resolv
