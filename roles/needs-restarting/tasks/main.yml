@@ -1,24 +1,20 @@
-#- name: Install base packages
-#  apt: name={{ apache2 }} state=installed
-#  apt: pkg=w3m state=installed
+    - name: On regarde si le serveur a besoin de rebooter
+#      shell: needs-restarting -r
+      shell: needs-restarting -r
+      register: pingout
+      ignore_errors: yes
+      changed_when: pingout.rc == 1
+      failed_when: pingout.rc > 1
 
-# This uses a variable as this changes per distribution.
-#- name: add the apache package
-#  package:
-#      name: "{{ w3m }}"
-#      state: present
+                      
+    - debug: msg="{{ pingout.rc }}"
 
-# - name: register version check
-#    shell: cat /root/versions.js | grep -q {{VERSION}}
-#    register: current_version
-#    failed_when: current_version.rc == 2
-
- - name: restart si necessaire
-   shell: needs-restarting -r|reboot
-   register: retour
-   failed_when: retour.rc > 1
-#     when: result is failed
-
-#    when: current_version.rc == 1
-#     when: result is failed
-
+    - name: On reboot le serveur
+#      raw: echo "What a wonderful world"
+      reboot:
+      register: output
+      when:  pingout.rc  == 1
+ 
+#    - debug: var=output
+                                 
+                                 

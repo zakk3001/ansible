@@ -1,6 +1,6 @@
 - name: Set Password
   hosts: Centos
-  remote_user: ansible
+  remote_user: root
   sudo: yes
   ignore_errors: yes
 
