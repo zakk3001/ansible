@@ -7,19 +7,23 @@
 #  package:
 #      name: "{{ w3m }}"
 #      state: present
- - shell : cat /etc/centos-release
+#
+ - name : On va chercher la version de l'OS
+   shell : cat /etc/centos-release
    register: output
    changed_when : false
-
- - debug: var=output.stdout
+ - name : On affiche la version de l'OS
+   debug: var=output.stdout
 
  - name : On update les serveurs
    yum:
      name: '*'
      exclude: php5*
      state: latest
- - shell : cat /etc/centos-release
+
+ - name : On va chercher la version de l'OS
+   shell : cat /etc/centos-release
    register: output
    changed_when : false
-
- - debug: var=output.stdout
+ - name : On affiche la version de l'OS
+   debug: var=output.stdout

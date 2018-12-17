@@ -1,20 +1,15 @@
-    - name: On regarde si le serveur a besoin de rebooter
-#      shell: needs-restarting -r
-      shell: needs-restarting -r
-      register: pingout
-      ignore_errors: yes
-      changed_when: pingout.rc == 1
-      failed_when: pingout.rc > 1
-
+  - name: On regarde si le serveur a besoin de rebooter
+    shell: needs-restarting -r
+    register: pingout
+    ignore_errors: yes
+    changed_when: pingout.rc == 1
+    failed_when: pingout.rc > 1
                       
-    - debug: msg="{{ pingout.rc }}"
+  - name: On regarde le code de retour
+    debug: msg="{{ pingout.rc }}"
 
-    - name: On reboot le serveur
-#      raw: echo "What a wonderful world"
-      reboot:
-      register: output
-      when:  pingout.rc  == 1
- 
-#    - debug: var=output
-                                 
+  - name: On reboot le serveur si necessaire
+    reboot:
+    register: output
+    when:  pingout.rc  == 1
                                  

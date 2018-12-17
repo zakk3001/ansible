@@ -4,4 +4,5 @@
   #  become: yes
   roles:
   - update-yum
+  - needs-restarting
 #  - reboot-centos
