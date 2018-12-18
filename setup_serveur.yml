@@ -1,5 +1,6 @@
 ---
 - hosts: Centos
+  gather_facts: no
   roles:
   - resolv
   - apache2-yum

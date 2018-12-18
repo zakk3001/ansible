@@ -12,3 +12,8 @@
    yum:
      name: w3m 
      state: present
+
+ - name : On installe rsync
+   yum:
+     name: rsync 
+     state: present
