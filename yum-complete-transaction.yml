@@ -1,0 +1,8 @@
+---
+- hosts: Centos
+  remote_user: root
+  #  become: yes
+  roles:
+  - yum-complete-transaction
+  - needs-restarting
+#  - reboot-centos
