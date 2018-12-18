@@ -1,5 +1,6 @@
 ---
 - hosts: Centos
+  gather_facts: no
   remote_user: root
   #  become: yes
   roles:

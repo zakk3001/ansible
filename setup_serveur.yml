@@ -4,5 +4,5 @@
   - resolv
   - apache2-yum
     #  - fichier
-  - nettools-yum
+  - utilitaires
   - fail2ban

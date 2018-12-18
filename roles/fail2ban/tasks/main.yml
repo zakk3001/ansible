@@ -33,11 +33,13 @@
      line: 'findtime=86400'
      state: present
 
- - service:
+ - name: On demarre fail2ban
+   service:
      name: fail2ban
      state: restarted
 
- - systemd:
+ - name: On ajoute fail2ban dans systemD
+   systemd:
      name: fail2ban
      enabled: yes
      masked: no

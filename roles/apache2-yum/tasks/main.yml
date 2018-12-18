@@ -8,17 +8,18 @@
 #      name: "{{ w3m }}"
 #      state: present
 
-
-# Install "nmap"
- - yum:
+ - name : On installe Apache
+   yum:
      name: httpd 
      state: present
 
- - service:
+ - name : On demarre le service
+   service:
      name: httpd
      state: stopped
 
- - systemd:
+ - name : On ajoute le service dans systemD
+   systemd:
      name: httpd
      enabled: no
      masked: no
