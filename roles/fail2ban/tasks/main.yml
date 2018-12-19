@@ -1,13 +1,13 @@
- - name: On installe fail2ban
+ - name: On installe epel-release
    yum:
      name: epel-release
      state: present
 
- - yum:
+ - name: On installe fail2ban
+   yum:
      name: fail2ban
      state: present
 
-# copie fichier locale vers remote
  - name: On copie le fichier template
    copy:
      src: /etc/ansible/fichiers/fail2ban/jail.local.modif
@@ -16,7 +16,6 @@
      group: root
      mode: 0644
 
-# mets la bonne valeure
  - name: On mets le bon bantime dans le fichier
    lineinfile:
      path: /etc/fail2ban/jail.local
@@ -25,7 +24,6 @@
      backrefs: yes
      #     state: present
 
-# mets la bonne valeure
  - name: On mets le bon findtime
    lineinfile:
      path: /etc/fail2ban/jail.local
