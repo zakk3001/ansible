@@ -4,6 +4,7 @@
   roles:
   - resolv
   - apache2-yum
+  - changepassword
     #  - fichier
   - utilitaires
   - fail2ban
