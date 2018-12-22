@@ -1,6 +1,0 @@
- - name: Change root Password
-   user: name=root update_password=always password=$1$Gp1pfVDV$MRNbME6dHhDV9sD.SBorC0
- - name: Change ansible Password  
-   user: name=ansible update_password=always password=$1$Gp1pfVDV$MRNbME6dHhDV9sD.SBorC0
- - name: Change zakk Password                                                           
-   user: name=zakk update_password=always password=$1$Gp1pfVDV$MRNbME6dHhDV9sD.SBorC0
