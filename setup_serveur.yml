@@ -8,3 +8,4 @@
     #  - fichier
   - utilitaires
   - fail2ban
+- import_playbook: glusterfs-client.yml
