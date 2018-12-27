@@ -29,7 +29,8 @@
      path: /etc/fail2ban/jail.local
      regexp: '^findtime='
      line: 'findtime=86400'
-     state: present
+     backrefs: yes
+     #state: present
 
  - name: On demarre fail2ban
    service:

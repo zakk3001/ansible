@@ -2,6 +2,7 @@
    yum:
      name: glusterfs-client
      state: present
+   become: yes
 
      # - name: on ajoute le mount point dans /etc/fstab
      # lineinfile:

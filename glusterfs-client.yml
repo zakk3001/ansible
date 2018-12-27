@@ -1,5 +1,6 @@
 ---
 - hosts: glusterfs-client
+#  remote_user: ansible
   gather_facts: no
   roles:
   - glusterfs-client

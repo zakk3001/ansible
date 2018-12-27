@@ -2,4 +2,4 @@
 - hosts: Centos
   gather_facts: no
   roles:
-  - fail2ban
+  - ntp

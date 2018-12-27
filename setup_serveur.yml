@@ -3,8 +3,9 @@
   gather_facts: no
   roles:
   - resolv
+  - ntp
   - apache2-yum
-  - changepassword
+#  - changepassword
     #  - fichier
   - utilitaires
   - fail2ban
