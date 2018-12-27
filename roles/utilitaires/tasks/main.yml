@@ -17,3 +17,8 @@
    yum:
      name: rsync 
      state: present
+
+ - name : On installe bind-utils (nslookup)
+   yum:
+     name: bind-utils 
+     state: present

@@ -1,0 +1,5 @@
+---
+- hosts: glusterfs-client
+  gather_facts: no
+  roles:
+  - glusterfs-client

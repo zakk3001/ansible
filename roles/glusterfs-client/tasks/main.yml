@@ -1,0 +1,32 @@
+ - name: On installe le client glusterfs
+   yum:
+     name: glusterfs-client
+     state: present
+
+     # - name: on ajoute le mount point dans /etc/fstab
+     # lineinfile:
+     # path: /etc/fstab
+     # line: '45.62.212.117:/gv0 /mnt/glusterfs glusterfs defaults,_netdev 0 0'
+     # create: yes
+
+
+ - name: On cree le repertoire /mnt/glusterfs
+     # shell: mkdir -p /mnt/glusterfs
+   file:
+     path: /mnt/glusterfs
+     state: directory
+     owner: root
+     group: root
+     mode: 01777
+
+ - name: On monte le filesystem
+   mount:
+     path: /mnt/glusterfs
+     src: 45.62.212.117:/gv0
+     fstype: glusterfs
+     boot: yes
+     opts: defaults,_netdev
+     state: mounted
+
+     # - name: On monte le filesystem
+     # shell: mount -a
