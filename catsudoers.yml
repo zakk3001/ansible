@@ -1,0 +1,12 @@
+- name: cat sudoers
+  hosts: Centos
+  #  user: root
+  remote_user: root
+  become: yes
+
+  tasks:
+    - name: Change root Password
+      shell: cat /etc/sudoers
+      regiseter: resultat
+    - name: On affiche le resultat
+      debug: var=resultat.stdout
