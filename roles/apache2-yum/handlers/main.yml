@@ -1,0 +1,5 @@
+---
+ - name: httpd stopped
+   service:
+     name: httpd
+     state: stopped

@@ -1,0 +1,5 @@
+---
+ - name: demarre NTP
+   service:
+     name: ntpd
+     state: restarted
