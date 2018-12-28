@@ -1,24 +1,13 @@
- - name : On installe htop
-   yum:
-     name: htop 
-     state: present
-
- - name : On installe net-tools
-   yum:
-     name: net-tools 
-     state: present
-
- - name : On installe w3m
-   yum:
-     name: w3m 
-     state: present
-
- - name : On installe rsync
-   yum:
-     name: rsync 
-     state: present
-
- - name : On installe bind-utils (nslookup)
-   yum:
-     name: bind-utils 
-     state: present
+ - name : On installe les utilitaires
+   yum :
+           #    name : "{{ item }}" 
+           # `name: [u'htop', u'net-tools', u'w3m', u'rsync', u'bind-utils']`
+     name: ['htop', 'net-tools', 'w3m', 'rsync', 'bind-utils']
+     state: latest
+     #   with_items:
+     # - htop
+     # - net-tools
+     #- w3m
+     #- rsync
+     #- bind-utils
+       #   state: present
