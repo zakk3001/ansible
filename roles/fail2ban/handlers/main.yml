@@ -1,6 +1,5 @@
 
-# - name: fail2ban restarted
- - name: zozo
+ - name: fail2ban restarted
    service:
      name: fail2ban
      state: restarted

@@ -12,11 +12,12 @@
    yum:
      name: httpd 
      state: present
+   notify: httpd stopped
 
- - name : On demarre le service
-   service:
-     name: httpd
-     state: stopped
+# - name : On demarre le service
+#   service:
+#     name: httpd
+#     state: stopped
 
  - name : On ajoute le service dans systemD
    systemd:

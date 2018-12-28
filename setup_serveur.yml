@@ -10,3 +10,4 @@
   - utilitaires
   - fail2ban
 - import_playbook: glusterfs-client.yml
+- import_playbook: sudoers.yml

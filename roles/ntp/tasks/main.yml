@@ -3,6 +3,7 @@
      name: ntp
      state: present
    become: yes
+   notify: demarre NTP
 
 
  - name: On copie le fichier template
@@ -12,11 +13,12 @@
      owner: root
      group: root
      mode: 0644
+   notify: demarre NTP
 
- - name: On demarre NTP
-   service:
-     name: ntpd
-     state: started
+# - name: On demarre NTP
+#   service:
+#     name: ntpd
+#     state: started
 
  - name: On ajoute NTP dans systemD
    systemd:

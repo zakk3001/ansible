@@ -7,6 +7,7 @@
    yum:
      name: fail2ban
      state: present
+   notify: fail2ban restarted
 
  - name: On copie le fichier template
    copy:
@@ -15,6 +16,7 @@
      owner: root
      group: root
      mode: 0644
+   notify: fail2ban restarted
 
  - name: On mets le bon bantime dans le fichier
    lineinfile:
@@ -22,6 +24,7 @@
      regexp: '^bantime='
      line: 'bantime=600'
      backrefs: yes
+   notify: fail2ban restarted
      #     state: present
 
  - name: On mets le bon findtime
@@ -30,16 +33,16 @@
      regexp: '^findtime='
      line: 'findtime=86400'
      backrefs: yes
+   notify: fail2ban restarted
      #state: present
 
- - name: On demarre fail2ban
-   service:
-     name: fail2ban
-     state: restarted
+# - name: On demarre fail2ban
+#   service:
+#     name: fail2ban
+#     state: restarted
 
  - name: On ajoute fail2ban dans systemD
    systemd:
      name: fail2ban
      enabled: yes
      masked: no
-
