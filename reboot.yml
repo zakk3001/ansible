@@ -1,4 +1,6 @@
 ---
+  become: yes
+  become_user: root
 - name : on reboot les serveurs master
   hosts: glusterfs-server
 #  serial: "30%"

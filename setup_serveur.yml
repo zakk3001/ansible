@@ -1,6 +1,8 @@
 ---
 - hosts: Centos
   gather_facts: no
+  become: yes
+  become_user: root
   roles:
   - resolv
   - ntp

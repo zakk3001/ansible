@@ -1,7 +1,7 @@
 - name: Set Password
   hosts: Centos
-  remote_user: root
   become: yes
+  become_user: root
   gather_facts: no
   ignore_errors: yes
   #  vars:

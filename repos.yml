@@ -1,5 +1,11 @@
 ---
 - hosts: repos
   gather_facts: no
+  become: yes
+  become_user: root
+  vars:
+    - source_iso: "files/CentOS-7-x86_64-DVD-1804.iso"
+    - dest_iso: "/opt/CentOS-7-x86_64-DVD-1804.iso"
+    - repo_mount: "/mnt/dvd"
   roles:
   - repos

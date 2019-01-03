@@ -2,7 +2,8 @@
    yum :
            #    name : "{{ item }}" 
            # `name: [u'htop', u'net-tools', u'w3m', u'rsync', u'bind-utils']`
-     name: ['htop', 'net-tools', 'w3m', 'rsync', 'bind-utils']
+     name: ['net-tools', 'w3m', 'rsync', 'bind-utils']
+#     name: ['htop', 'net-tools', 'w3m', 'rsync', 'bind-utils']
      state: latest
      #   with_items:
      # - htop
