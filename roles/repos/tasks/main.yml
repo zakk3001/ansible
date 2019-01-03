@@ -1,0 +1,44 @@
+
+
+ - name: On cree le repertoire /mnt/glusterfs
+   file:
+     path: /iso
+     state: directory
+     owner: root
+     group: root
+     mode: 01777
+    
+ - name: On monte le filesystem
+   mount:
+     path: /iso
+     src: /mnt/glusterfs/CentOS-7-x86_64-DVD-1810.iso
+     fstype: iso9660
+     opts: loop,ro
+     boot: yes
+     state: mounted
+
+ - name: Add repository
+   yum_repository:
+     name: local
+     description: Local DVD repository
+     baseurl: "file:///iso"
+     enabled: yes
+     gpgcheck: no
+
+ - name: Ansible delete file wildcard
+   find:
+     paths: /etc/yum.repos.d
+     patterns: '^Cen.*.repo,epel.*.repo'
+     # patterns: "^Cen.*.repo, epel.*.repo" '^Cen.*.repo, epel.*.repo'
+     use_regex: true
+   register: wildcard_files_to_delete
+
+ - name: Ansible remove file wildcard
+   file:
+     path: "{{ item.path }}"
+     state: absent
+   with_items: "{{ wildcard_files_to_delete.files }}"
+
+ - name: Update cache
+   yum:
+     update_cache: yes
