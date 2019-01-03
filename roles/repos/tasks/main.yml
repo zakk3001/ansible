@@ -1,6 +1,17 @@
 
+# - name: Backup des repos
+#   command: cp -pr /etc/yum.repos.d /root
 
- - name: On cree le repertoire /mnt/glusterfs
+ - name: On demonte iso pour le remonter plus tard
+   mount:
+     path: /iso
+     #     src: /mnt/glusterfs/CentOS-7-x86_64-DVD-1810.iso
+     # fstype: iso9660
+     #opts: loop,ro
+     #boot: yes
+     state: unmounted
+
+ - name: On cree le repertoire /iso
    file:
      path: /iso
      state: directory
@@ -17,7 +28,7 @@
      boot: yes
      state: mounted
 
- - name: Add repository
+ - name: Ajout du repository
    yum_repository:
      name: local
      description: Local DVD repository
@@ -25,7 +36,7 @@
      enabled: yes
      gpgcheck: no
 
- - name: Ansible delete file wildcard
+ - name: Recheche les repos a supprimer
    find:
      paths: /etc/yum.repos.d
      patterns: '^Cen.*.repo,epel.*.repo'
@@ -33,7 +44,7 @@
      use_regex: true
    register: wildcard_files_to_delete
 
- - name: Ansible remove file wildcard
+ - name: supprime les repos a supprimer
    file:
      path: "{{ item.path }}"
      state: absent
