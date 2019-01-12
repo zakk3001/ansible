@@ -1,0 +1,18 @@
+
+
+ - name: Synchronization of src on the control machine to dest on the remote hosts
+   synchronize:
+     src: roles/promutuel.repositories/templates/yum.repos.d
+     dest: /etc/
+
+# - name: Ajout du repository
+#   yum_repository:
+#     name: local
+#     description: Local DVD repository
+#     baseurl: "file:///iso"
+#     enabled: yes
+#     gpgcheck: no
+
+ - name: Update cache
+   yum:
+     update_cache: yes

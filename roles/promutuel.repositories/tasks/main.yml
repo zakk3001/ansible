@@ -1,0 +1,35 @@
+
+
+ - name: On demonte iso pour le remonter plus tard
+   mount:
+     path: /iso
+     #     src: /mnt/glusterfs/CentOS-7-x86_64-DVD-1810.iso
+     # fstype: iso9660
+     #opts: loop,ro
+     #boot: yes
+     state: unmounted
+
+ - name: On cree le repertoire /iso
+   file:
+     path: /iso
+     state: directory
+     owner: root
+     group: root
+     mode: 01777
+    
+ - name: On monte le filesystem
+   mount:
+     path: /iso
+     src: /mnt/glusterfs/CentOS-7-x86_64-DVD-1810.iso
+     fstype: iso9660
+     opts: loop,ro
+     boot: yes
+     state: mounted
+
+ - name: Synchronisation des repositories Centos
+   synchronize:
+     src: roles/promutuel.repositories/templates/yum.repos.d
+     dest: /etc/
+     delete: yes
+     recursive: yes
+   notify: Update_yum_cache

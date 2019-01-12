@@ -1,0 +1,55 @@
+
+# - name: Backup des repos
+#   command: cp -pr /etc/yum.repos.d /root
+
+ - name: On demonte iso pour le remonter plus tard
+   mount:
+     path: /iso
+     #     src: /mnt/glusterfs/CentOS-7-x86_64-DVD-1810.iso
+     # fstype: iso9660
+     #opts: loop,ro
+     #boot: yes
+     state: unmounted
+
+ - name: On cree le repertoire /iso
+   file:
+     path: /iso
+     state: directory
+     owner: root
+     group: root
+     mode: 01777
+    
+ - name: On monte le filesystem
+   mount:
+     path: /iso
+     src: /mnt/glusterfs/CentOS-7-x86_64-DVD-1810.iso
+     fstype: iso9660
+     opts: loop,ro
+     boot: yes
+     state: mounted
+
+ - name: Ajout du repository
+   yum_repository:
+     name: local
+     description: Local DVD repository
+     baseurl: "file:///iso"
+     enabled: yes
+     gpgcheck: no
+
+ - name: Recheche les repos a supprimer
+   find:
+     paths: /etc/yum.repos.d
+     patterns: '^Cen.*.repo,epel.*.repo'
+     # patterns: "^Cen.*.repo, epel.*.repo" '^Cen.*.repo, epel.*.repo'
+     use_regex: true
+   register: wildcard_files_to_delete
+
+ - name: supprime les repos a supprimer
+   file:
+     path: "{{ item.path }}"
+     state: absent
+   with_items: "{{ wildcard_files_to_delete.files }}"
+
+ - name: Update cache
+   yum:
+     update_cache: yes

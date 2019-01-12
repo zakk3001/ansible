@@ -1,0 +1,5 @@
+[local]
+baseurl = file:///iso
+enabled = 1
+gpgcheck = 0
+name = Local DVD repository

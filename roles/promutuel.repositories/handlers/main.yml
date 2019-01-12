@@ -1,0 +1,4 @@
+---
+ - name: Update_yum_cache
+   yum:
+     update_cache: yes
