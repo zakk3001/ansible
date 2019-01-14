@@ -9,7 +9,7 @@
   - apache2-yum
 #  - changepassword
     #  - fichier
-  - utilitaires
   - fail2ban
+  - utilitaires
 - import_playbook: glusterfs-client.yml
 - import_playbook: sudoers.yml
