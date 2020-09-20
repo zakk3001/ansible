@@ -1,0 +1,9 @@
+---
+- hosts: relais
+  gather_facts: no
+  become: yes
+  become_user: root
+  roles:
+  - postfix-relais
+    #- import_playbook: glusterfs-client.yml
+    #- import_playbook: sudoers.yml
