@@ -1,0 +1,18 @@
+---
+# handlers file for postfix-relais
+#
+- name: restart postfix
+  shell : postmap /etc/postfix/sasl_passwd
+  notify : restart postfix2
+
+- name : restart postfix2
+  service :
+    name : postfix
+    enabled: yes
+    state: restarted
+  notify : remove fichier sasl
+
+- name : remove fichier sasl
+  file:
+    path : /etc/postfix/sasl_passwd
+    state : absent
