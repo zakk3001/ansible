@@ -1,0 +1,30 @@
+- name: Creer repertoire /etc/pam.scripts
+  file:
+    path: /etc/pam.scripts
+    state: directory
+    mode: '0755'
+
+
+- name: On copie le scripts pour les alertes mail
+  copy:
+    src: ssh_alert.sh
+    dest: /etc/pam.scripts/ssh_alert.sh
+    owner: root
+    group: root
+    mode: 0700
+
+- name : mets SELINUX en passive mode
+  command : setenforce 0
+
+- name: Mets SELINUX en passive mode dans /etc/selinux/config
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=permissive
+
+- name: Ajoute le script dans PAM /etc/pam.d/sshd
+  lineinfile:
+    path: /etc/pam.d/sshd
+    regexp: '^session    required     pam_exec.so'
+    line: session    required     pam_exec.so /etc/pam.scripts/ssh_alert.sh
+
