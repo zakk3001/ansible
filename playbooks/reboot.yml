@@ -1,0 +1,17 @@
+---
+  become: yes
+  become_user: root
+- name : on reboot les serveurs master
+  hosts: glusterfs-server
+#  serial: "30%"
+  serial: 100%
+  gather_facts: False
+  roles:
+  - reboot-centos
+- name : on reboot les serveurs client
+  hosts: glusterfs-client
+#  serial: "30%"
+  serial: 100%
+  gather_facts: False
+  roles:
+  - reboot-centos

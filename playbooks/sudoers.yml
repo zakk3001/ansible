@@ -1,0 +1,15 @@
+- name: Set Password
+  hosts: Centos
+  become: yes
+  become_user: root
+  gather_facts: no
+  ignore_errors: yes
+  #  vars:
+  #  user: ansible
+        #  user: ansible
+  tasks:
+    - name: On modifie sudoers
+      template: src=templates/sudoers.j2 dest=/etc/sudoers.d/{{ item }}
+      with_items :
+        - ansible
+        - zakk

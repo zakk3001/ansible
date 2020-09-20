@@ -1,0 +1,10 @@
+---
+- hosts: Centos
+  gather_facts: no
+  become: yes
+  become_user: root
+  roles:
+  - update-yum
+#  - needs-restarting
+#  - reboot-centos
+- import_playbook: reboot-si-necessaire.yml
