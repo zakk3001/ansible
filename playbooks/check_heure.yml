@@ -1,0 +1,21 @@
+---
+- hosts: Centos
+  gather_facts: no
+  become: yes
+  become_user: root
+  tasks:
+    - name : on sort lheure sur le serveur
+      shell : date -u
+      register : heure
+    - debug :
+        msg : "{{ heure.stdout }}"
+        #  roles:
+        #  - resolv
+        #  - ntp
+        #  - apache2-yum
+        ##  - changepassword
+        #    #  - fichier
+        #  - fail2ban
+        #  - utilitaires
+        #    #- import_playbook: glusterfs-client.yml
+        #    #- import_playbook: sudoers.yml
