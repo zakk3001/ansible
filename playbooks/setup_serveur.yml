@@ -1,0 +1,16 @@
+---
+- hosts: Centos
+  gather_facts: no
+  become: yes
+  become_user: root
+  roles:
+  - resolv
+  - ntp
+  - apache2-yum
+#  - changepassword
+    #  - fichier
+  - fail2ban
+  - utilitaires
+  - securite
+    #- import_playbook: glusterfs-client.yml
+    #- import_playbook: sudoers.yml

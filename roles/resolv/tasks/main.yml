@@ -2,10 +2,16 @@
  - name : On ajoute le serveur DNS dans resolv.conf
    lineinfile:
      path: /etc/resolv.conf
-     line: 'nameserver 8.8.8.8'
- - name : On rend la modif permanante
+     line: "{{ item }}"
+   with_items:
+     - nameserver 8.8.8.8
+     - nameserver 8.8.4.4
+
+ - name : On rend la modif permanante dans ifcfg-eth0
    lineinfile:
      path: /etc/sysconfig/network-scripts/ifcfg-eth0
      line: 'PEERDNS=no'
      state: present
 
+ - name : On rend la modif permanante avec les attributs du fichier
+   shell : chattr +i /etc/resolv.conf
