@@ -17,7 +17,11 @@ A SSH login was successful, so here are some information for security:
 "
 
 if [[ ${PAM_TYPE} = "open_session" ]]; then
+    if [[ ${PAM_USER} != "ansible" ]]; then
 	echo "Subject:${SUBJECT} ${BODY}" | /usr/sbin/sendmail ${RECIPIENT}
+    else
+        exit 0
+    fi
 fi
 
 exit 0
