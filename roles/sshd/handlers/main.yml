@@ -1,0 +1,5 @@
+---
+ - name: demarre SSHD
+   service:
+     name: sshd
+     state: restarted

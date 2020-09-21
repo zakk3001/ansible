@@ -1,0 +1,8 @@
+
+- name: interdit le RootLogin
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#PermitRootLogin yes'
+    line: PermitRootLogin no
+    backup: yes
+  notify: demarre SSHD
