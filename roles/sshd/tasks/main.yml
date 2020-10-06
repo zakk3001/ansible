@@ -2,7 +2,21 @@
 - name: interdit le RootLogin
   lineinfile:
     path: /etc/ssh/sshd_config
-    regexp: '^#PermitRootLogin yes'
+    regexp: '^PermitRootLogin '
     line: PermitRootLogin no
+    backup: yes
+  notify: demarre SSHD
+
+- name: AllowUsers ansible
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: AllowUsers ansible
+    backup: yes
+  notify: demarre SSHD
+
+- name: AllowUsers zakk
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: AllowUsers zakk
     backup: yes
   notify: demarre SSHD
