@@ -20,3 +20,7 @@
     dest: /etc/postfix/sasl_passwd
     mode: '0644'
   notify: restart postfix
+
+- name: postmap pour creer fichier bd
+  command : postmap /etc/postfix/sasl_passwd
+  notify: restart postfix
