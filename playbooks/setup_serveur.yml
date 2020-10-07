@@ -4,13 +4,16 @@
   become: yes
   become_user: root
   roles:
+  - repos-centos
+  - sudoers
+  - changepassword
   - resolv
   - ntp
-  - apache2-yum
-#  - changepassword
-    #  - fichier
+    #  - apache2-yum
   - fail2ban
   - utilitaires
+  - postfix-relais
   - securite
+  - sshd
     #- import_playbook: glusterfs-client.yml
     #- import_playbook: sudoers.yml
