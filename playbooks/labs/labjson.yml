@@ -1,0 +1,32 @@
+---
+# lab json afficher 
+- name: Lab json afficher objet vs array
+  hosts: localhost
+  connection: local
+  gather_facts: true
+
+  tasks:
+    - name: Collect only facts returned by facter
+      setup:
+        gather_subset:
+           - '!all'
+           - '!any'
+           - facter
+      register: toto
+    - name: set_fact
+      set_fact:
+        cmdline: "{{ toto.ansible_facts.ansible_cmdline.ro }}"  
+        nameservers: "{{ toto.ansible_facts.ansible_dns.nameservers }}"
+
+
+    - name: object ordinaire
+      debug:
+        var: cmdline
+    - name: array
+      debug:
+        var: nameservers
+    - name: array par 1 a la fois
+      debug:
+        var: item
+      loop: "{{nameservers}}"  
+
